@@ -1,0 +1,215 @@
+<DOCTYPE html>
+<style>
+    .navbar-items {
+        background-color: #333;
+        overflow: hidden;
+    }
+
+    .navbar-items li{
+        list-style-type: none;
+        float: right;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+
+
+    table.times {
+        table-layout: fixed;
+        border-collapse: collapse;
+        border: 2px solid rgb(200, 200, 200);
+        letter-space: 1px;
+        column-rule-style: solid;
+        empty-cells: show;
+    }
+
+    .times th, .times td {
+        background-color: #d7d9f2;
+        
+    }
+
+    .times tr{
+        width="15%";
+        border: 2px solid black;
+        letter-space: 1px;
+        border-bottom: 1px solid #ddd;
+        border-block-style: ;
+    }
+
+    .times thread{
+        background-color: #d7d9f2;
+
+    }
+
+    #row2 {
+    visibility: hidden;
+    display: none;
+
+    }
+
+    #row3{
+    visibility: hidden;
+    display: none;
+    } 
+    
+    #editcontainer{
+        display: none;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        z-index:1;
+        overflow: auto;
+    }
+
+
+</style>
+<html>
+<head>
+    <meta name="view" content="width=device-width, initial-scale = 1.0">
+</head>
+<body>
+    <div class = "navbar-items">
+        <li class = "nav-item">
+            <a href = "#" class = "nav">Home</a>
+        </li>
+        <li class = "nav-item">
+            <a href = "#" class = "nav">Schedule</a>
+        </li>
+        <li class = "nav-item">
+            <a href = "#" class = "nav">Account</a>
+        </li>
+    </div>
+    <div class = "gyms">
+        <div class="gym1">
+            
+        </div>
+        <div class="gym2">
+
+        </div>
+
+        <table  id="times" width="100%" border="1">
+            <thread>
+                <tr>
+                    <th>Gym 1</th>
+                    <th>Sunday</th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                    <th>Saturday</th>
+                </tr>
+            </thread>
+            
+            <tbody>
+            <tr id="row1"><th scope="row">8:00</th></tr>
+            <tr id="row3"><th scope="row">8:15</th></tr>
+            <tr id="row2"><th scope="row">8:30</th></tr>
+            <tr id="row3"><th scope="row">8:45</th></tr>
+            <tr id="row1"><th scope="row">9:00</th></tr>
+            <tr id="row3"><th scope="row">9:15</th></tr>
+            <tr id="row2"><th scope="row">9:30</th></tr>
+            <tr id="row3"><th scope="row">9:45</th></tr>
+            <tr id="row1"><th scope="row">10:00</th></tr>
+            <tr id="row3"><th scope="row">10:15</th></tr>
+            <tr id="row2"><th scope="row">10:30</th></tr>
+            <tr id="row3"><th scope="row">10:45</th></tr>
+            <tr id="row1"><th scope="row">11:00</th></tr>
+            <tr id="row3"><th scope="row">11:15</th></tr>
+            <tr id="row2"><th scope="row">11:30</th></tr>
+            <tr id="row3"><th scope="row">11:45</th></tr>
+            <tr id="row1"><th scope="row">12:00</th></tr>
+            <tr id="row3"><th scope="row">12:15</th></tr>
+            <tr id="row2"><th scope="row">12:30</th></tr>
+            <tr id="row3"><th scope="row">12:45</th></tr>
+            <tr id="row1"><th scope="row">13:00</th></tr>
+            <tr id="row3"><th scope="row">13:15</th></tr>
+            <tr id="row2"><th scope="row">13:30</th></tr>
+            <tr id="row3"><th scope="row">13:45</th></tr>
+            <tr id="row1"><th scope="row">14:00</th></tr>
+            <tr id="row3"><th scope="row">14:15</th></tr>
+            <tr id="row2"><th scope="row">14:30</th></tr>
+            <tr id="row3"><th scope="row">14:45</th></tr>
+            <tr id="row1"><th scope="row">15:00</th></tr>
+            <tr id="row3"><th scope="row">15:15</th></tr>
+            <tr id="row2"><th scope="row">15:30</th></tr>
+            <tr id="row3"><th scope="row">15:45</th></tr>
+            <tr id="row1"><th scope="row">16:00</th></tr>
+            <tr id="row3"><th scope="row">16:15</th></tr>
+            <tr id="row2"><th scope="row">16:30</th></tr>
+            <tr id="row3"><th scope="row">16:45</th></tr>
+            <tr id="row1"><th scope="row">17:00</th></tr>
+            <tr id="row3"><th scope="row">17:15</th></tr>
+            <tr id="row2"><th scope="row">17:30</th></tr>
+            <tr id="row3"><th scope="row">17:45</th></tr>
+            <tr id="row1"><th scope="row">18:00</th></tr>
+            <tr id="row3"><th scope="row">18:15</th></tr>
+            <tr id="row2"><th scope="row">18:30</th></tr>
+            <tr id="row3"><th scope="row">18:45</th></tr>
+            <tr id="row1"><th scope="row">19:00</th></tr>
+            <tr id="row3"><th scope="row">19:15</th></tr>
+            <tr id="row2"><th scope="row">19:30</th></tr>
+            <tr id="row3"><th scope="row">19:45</th></tr>
+            <tr id="row1"><th scope="row">20:00</th></tr>
+            <tr id="row3"><th scope="row">20:15</th></tr>
+            <tr id="row2"><th scope="row">20:30</th></tr>
+            <tr id="row3"><th scope="row">20:45</th></tr>
+            <tr id="row1"><th scope="row">21:00</th></tr>
+            <tr id="row3"><th scope="row">21:15</th></tr>
+            <tr id="row2"><th scope="row">21:30</th></tr>
+            <tr id="row3"><th scope="row">21:45</th></tr>
+            <tr id="row1"><th scope="row">22:00</th></tr>
+        </tbody>
+            
+            
+        </table>
+    <button id="edit" type="button" onclick="edit()" >Edit</button>
+
+    <div id="editcontainer">
+        <form class="editcal">
+        <input type="text" id="employee" placeholder="Please enter the instructor's name">
+        <input type="date" id="date" placeholder="Enter date."> 
+        <input type="time" id="starttime" placeholder="Enter start time.">
+        <input type="time" id="endtime" placeholder="Enter end time.">
+        <button id="submit" type="button" onclick="submit()">Submit</button>    
+        </form>
+
+    </div>
+
+    <p id="test"> </p>
+</body>
+<script>
+    document.getElementById("test").innerHTML = FormData.getElementById("employee").value;
+    document.getElementById("employee").addEventListener("change", validate);
+    const currentDate = new Date("03/25/2015");
+    //document.getElementById("test").innerHTML = currentDate;
+
+    function edit(){
+        document.getElementById("editcontainer").style.display = 'inline-block';
+    }
+
+    function submit(){
+        var emp = FormData.getElementById("employee");
+        let sceduleblock= {
+        //emp: document.getElementById("employee").value,
+        dat: document.getElementById("date").value,
+        startt: document.getElementById("starttime").value,
+        endt: document.getElementById("endtime").value
+        };
+        document.getElementById("test").innerHTML = emp;
+
+    }
+
+/*     let element = document.getElementById("row2");
+    let hidden = element.getAttribute("hidden");
+    element.setAttribute("hidden", "hidden");
+
+    let element2 = document.getElementById("row3");
+    let hidden2 = element2.getAttribute("hidden");
+    element2.setAttribute("hidden", "hidden"); */
+
+</script>
+</html>
