@@ -1,215 +1,228 @@
-<DOCTYPE html>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Interact Video </title>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+</head>
 <style>
-    .navbar-items {
-        background-color: #333;
+    .sidebar {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+    }
+
+    @media screen and (max-height: 450px) {
+        .sidebar {
+            padding-top: 15px;
+        }
+
+        .sidebar a {
+            font-size: 18px;
+        }
+    }
+
+    .video-link {
+        display: block;
+        margin-bottom: 10px;
+        text-decoration: none;
+        color: #333;
+    }
+
+    .show {
+        display: block;
+    }
+
+    #image-container img {
+        position: absolute;
+        top: 10%;
+        left:29%;
+        height: 80vh;
         overflow: hidden;
     }
 
-    .navbar-items li{
-        list-style-type: none;
-        float: right;
-        color: #f2f2f2;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-        font-size: 14px;
+    #squad1 {
+        position: absolute;
+        top: 50%;
+        left: 20%;
+        width: 10%;
     }
 
-
-
-    table.times {
-        table-layout: fixed;
-        border-collapse: collapse;
-        border: 2px solid rgb(200, 200, 200);
-        letter-space: 1px;
-        column-rule-style: solid;
-        empty-cells: show;
+    #squad2 {
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        width: 10%;
     }
 
-    .times th, .times td {
-        background-color: #d7d9f2;
-        
+    #squad3 {
+        position: absolute;
+        left: 30%;
+        width: 10%;
     }
 
-    .times tr{
-        width="15%";
-        border: 2px solid black;
-        letter-space: 1px;
-        border-bottom: 1px solid #ddd;
-        border-block-style: ;
+    #squad4 {
+        position: absolute;
+        right: 30%;
+        width: 10%;
     }
 
-    .times thread{
-        background-color: #d7d9f2;
-
+    #squad5 {
+        position: absolute;
+        top: 20%;
+        right: 20%;
+        width: 10%;
     }
 
-    #row2 {
-    visibility: hidden;
-    display: none;
-
+    #squad6 {
+        position: absolute;
+        top: 50%;
+        right: 20%;
+        width: 10%;
     }
 
-    #row3{
-    visibility: hidden;
-    display: none;
-    } 
-    
-    #editcontainer{
-        display: none;
-        justify-content: center;
-        align-items: center;
-        position: fixed;
-        z-index:1;
-        overflow: auto;
+    .video-iframe {
+        width: 250px;
     }
-
-
 </style>
-<html>
-<head>
-    <meta name="view" content="width=device-width, initial-scale = 1.0">
-</head>
+
 <body>
-    <div class = "navbar-items">
-        <li class = "nav-item">
-            <a href = "#" class = "nav">Home</a>
-        </li>
-        <li class = "nav-item">
-            <a href = "#" class = "nav">Schedule</a>
-        </li>
-        <li class = "nav-item">
-            <a href = "#" class = "nav">Account</a>
-        </li>
-    </div>
-    <div class = "gyms">
-        <div class="gym1">
-            
+    <div id="image-container" onclick="closeVideo()"><img src="RAFB.jpg"></div>
+
+    <div id="mySidebar" class="sidebar">
+        <h2>Videos</h2>
+        <div id="video-list">
+            <!-- Video iframes will be dynamically added here -->
         </div>
-        <div class="gym2">
-
-        </div>
-
-        <table  id="times" width="100%" border="1">
-            <thread>
-                <tr>
-                    <th>Gym 1</th>
-                    <th>Sunday</th>
-                    <th>Monday</th>
-                    <th>Tuesday</th>
-                    <th>Wednesday</th>
-                    <th>Thursday</th>
-                    <th>Friday</th>
-                    <th>Saturday</th>
-                </tr>
-            </thread>
-            
-            <tbody>
-            <tr id="row1"><th scope="row">8:00</th></tr>
-            <tr id="row3"><th scope="row">8:15</th></tr>
-            <tr id="row2"><th scope="row">8:30</th></tr>
-            <tr id="row3"><th scope="row">8:45</th></tr>
-            <tr id="row1"><th scope="row">9:00</th></tr>
-            <tr id="row3"><th scope="row">9:15</th></tr>
-            <tr id="row2"><th scope="row">9:30</th></tr>
-            <tr id="row3"><th scope="row">9:45</th></tr>
-            <tr id="row1"><th scope="row">10:00</th></tr>
-            <tr id="row3"><th scope="row">10:15</th></tr>
-            <tr id="row2"><th scope="row">10:30</th></tr>
-            <tr id="row3"><th scope="row">10:45</th></tr>
-            <tr id="row1"><th scope="row">11:00</th></tr>
-            <tr id="row3"><th scope="row">11:15</th></tr>
-            <tr id="row2"><th scope="row">11:30</th></tr>
-            <tr id="row3"><th scope="row">11:45</th></tr>
-            <tr id="row1"><th scope="row">12:00</th></tr>
-            <tr id="row3"><th scope="row">12:15</th></tr>
-            <tr id="row2"><th scope="row">12:30</th></tr>
-            <tr id="row3"><th scope="row">12:45</th></tr>
-            <tr id="row1"><th scope="row">13:00</th></tr>
-            <tr id="row3"><th scope="row">13:15</th></tr>
-            <tr id="row2"><th scope="row">13:30</th></tr>
-            <tr id="row3"><th scope="row">13:45</th></tr>
-            <tr id="row1"><th scope="row">14:00</th></tr>
-            <tr id="row3"><th scope="row">14:15</th></tr>
-            <tr id="row2"><th scope="row">14:30</th></tr>
-            <tr id="row3"><th scope="row">14:45</th></tr>
-            <tr id="row1"><th scope="row">15:00</th></tr>
-            <tr id="row3"><th scope="row">15:15</th></tr>
-            <tr id="row2"><th scope="row">15:30</th></tr>
-            <tr id="row3"><th scope="row">15:45</th></tr>
-            <tr id="row1"><th scope="row">16:00</th></tr>
-            <tr id="row3"><th scope="row">16:15</th></tr>
-            <tr id="row2"><th scope="row">16:30</th></tr>
-            <tr id="row3"><th scope="row">16:45</th></tr>
-            <tr id="row1"><th scope="row">17:00</th></tr>
-            <tr id="row3"><th scope="row">17:15</th></tr>
-            <tr id="row2"><th scope="row">17:30</th></tr>
-            <tr id="row3"><th scope="row">17:45</th></tr>
-            <tr id="row1"><th scope="row">18:00</th></tr>
-            <tr id="row3"><th scope="row">18:15</th></tr>
-            <tr id="row2"><th scope="row">18:30</th></tr>
-            <tr id="row3"><th scope="row">18:45</th></tr>
-            <tr id="row1"><th scope="row">19:00</th></tr>
-            <tr id="row3"><th scope="row">19:15</th></tr>
-            <tr id="row2"><th scope="row">19:30</th></tr>
-            <tr id="row3"><th scope="row">19:45</th></tr>
-            <tr id="row1"><th scope="row">20:00</th></tr>
-            <tr id="row3"><th scope="row">20:15</th></tr>
-            <tr id="row2"><th scope="row">20:30</th></tr>
-            <tr id="row3"><th scope="row">20:45</th></tr>
-            <tr id="row1"><th scope="row">21:00</th></tr>
-            <tr id="row3"><th scope="row">21:15</th></tr>
-            <tr id="row2"><th scope="row">21:30</th></tr>
-            <tr id="row3"><th scope="row">21:45</th></tr>
-            <tr id="row1"><th scope="row">22:00</th></tr>
-        </tbody>
-            
-            
-        </table>
-    <button id="edit" type="button" onclick="edit()" >Edit</button>
-
-    <div id="editcontainer">
-        <form class="editcal">
-        <input type="text" id="employee" placeholder="Please enter the instructor's name">
-        <input type="date" id="date" placeholder="Enter date."> 
-        <input type="time" id="starttime" placeholder="Enter start time.">
-        <input type="time" id="endtime" placeholder="Enter end time.">
-        <button id="submit" type="button" onclick="submit()">Submit</button>    
-        </form>
-
     </div>
 
-    <p id="test"> </p>
+
+    <div id="container">
+        <div id="hotspot" class="hotspot">
+            <img id="squad1" src="402 SWEG Group & Squadron Shields/402 SWEG Shield.png">
+            <img id="squad2" src="402 SWEG Group & Squadron Shields/577.jpg">
+            <img id="squad3" src="402 SWEG Group & Squadron Shields/578.jpg">
+            <img id="squad4" src="402 SWEG Group & Squadron Shields/579.jpg">
+            <img id="squad5" src="402 SWEG Group & Squadron Shields/580.jpg">
+            <img id="squad6" src="402 SWEG Group & Squadron Shields/581.jpg">
+        </div>
+    </div>
+
+
 </body>
+
+
 <script>
-    document.getElementById("test").innerHTML = FormData.getElementById("employee").value;
-    document.getElementById("employee").addEventListener("change", validate);
-    const currentDate = new Date("03/25/2015");
-    //document.getElementById("test").innerHTML = currentDate;
-
-    function edit(){
-        document.getElementById("editcontainer").style.display = 'inline-block';
+    function openNav() {
+        document.getElementById("mySidebar").style.width = "250px";
+        document.body.style.marginLeft = "250px";
     }
 
-    function submit(){
-        var emp = FormData.getElementById("employee");
-        let sceduleblock= {
-        //emp: document.getElementById("employee").value,
-        dat: document.getElementById("date").value,
-        startt: document.getElementById("starttime").value,
-        endt: document.getElementById("endtime").value
+    function closeNav() {
+        document.getElementById("mySidebar").style.width = "0";
+        document.body.style.marginLeft = "0";
+    }
+
+    function closeVideo() {
+        if (document.pictureInPictureElement) {
+            document.exitPictureInPicture();
         };
-        document.getElementById("test").innerHTML = emp;
-
     }
 
-/*     let element = document.getElementById("row2");
-    let hidden = element.getAttribute("hidden");
-    element.setAttribute("hidden", "hidden");
+    //Squad 1 videos
+    var sqd1Videos = [
+        "NewAudio-Squad1/clip1.mp4",
+        "NewAudio-Squad1/clip2.mp4",
+        "NewAudio-Squad1/clip3.mp4",
+        "NewAudio-Squad1/clip4.mp4",
+        "NewAudio-Squad1/clip5.mp4"
+    ];
 
-    let element2 = document.getElementById("row3");
-    let hidden2 = element2.getAttribute("hidden");
-    element2.setAttribute("hidden", "hidden"); */
+    $('#squad1').click(function () {
+        addVideos(sqd1Videos);
+        openNav();
+    });
+
+    //Squad 2 videos
+    var sqd2Videos = [
+        "NewAudio-Squad2/clip1.mp4",
+        "NewAudio-Squad2/clip2.mp4",
+        "NewAudio-Squad2/clip3.mp4",
+        "NewAudio-Squad2/clip4.mp4",
+        "NewAudio-Squad2/clip5.mp4",
+        "NewAudio-Squad2/clip6.mp4",
+        "NewAudio-Squad2/clip7.mp4",
+        "NewAudio-Squad2/clip8.mp4",
+        "NewAudio-Squad2/clip9.mp4",
+        "NewAudio-Squad2/clip10.mp4",
+        "NewAudio-Squad2/clip11.mp4",
+        "NewAudio-Squad2/clip12.mp4",
+        "NewAudio-Squad2/clip13.mp4"
+    ];
+
+    $('#squad2').click(function () {
+        addVideos(sqd2Videos);
+        openNav();
+    });
+
+    //Squad 3 videos
+    var sqd3Videos = [
+        "NewAudio-Squad3/clip1.mp4",
+        "NewAudio-Squad3/clip2.mp4",
+    ];
+
+    $('#squad3').click(function () {
+        addVideos(sqd3Videos);
+        openNav();
+    });
+
+    //Squad 4 videos
+    var sqd4Videos = [
+        "NewAudio-Squad4/clip1.mp4",
+        "NewAudio-Squad4/clip2.mp4",
+        "NewAudio-Squad4/clip3.mp4"
+    ];
+
+    $('#squad4').click(function () {
+        addVideos(sqd4Videos);
+        openNav();
+    });
+
+    //Squad 5 videos
+    var sqd5Videos = [
+        "NewAudio-Squad5/clip1.mp4",
+        "NewAudio-Squad5/clip2.mp4",
+        "NewAudio-Squad5/clip3.mp4",
+    ];
+
+    $('#squad5').click(function () {
+        addVideos(sqd5Videos);
+        openNav();
+    });
+
+    function addVideos(videos) {
+        var videoList = document.getElementById("video-list");
+        videoList.innerHTML = '';
+        videos.forEach(function (url) {
+            var video = document.createElement("video");
+            video.src = url;
+            video.className = "video-iframe";
+            video.setAttribute("controls", "controls");
+            videoList.appendChild(video);
+        });
+    }
+
+
 
 </script>
+
+
 </html>
