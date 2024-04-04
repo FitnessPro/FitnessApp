@@ -89,13 +89,35 @@
         width: 10%;
     }
 
-    .video-iframe {
-        width: 250px;
+    .video-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 70%;
+        height: 70%;
+        display: none;
+        z-index: 2;
+        transition: opacity 0.5s ease;
+    }
+
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .video-container button {
+        position: relative;
+        z-index: 3;
+        transition: opacity 0.5s ease;
     }
 </style>
 
 <body>
-    <div id="image-container" onclick="closeVideo()"><img src="RAFB.jpg"></div>
+    <div id="image-container" onclick="stopAllVideos(), closeNav()"><img src="RAFB.jpg"></div>
 
     <div id="mySidebar" class="sidebar">
         <h2>Videos</h2>
@@ -122,8 +144,8 @@
 
 <script>
     function openNav() {
-        document.getElementById("mySidebar").style.width = "250px";
-        document.body.style.marginLeft = "250px";
+        document.getElementById("mySidebar").style.width = "350px";
+        document.body.style.marginLeft = "350px";
     }
 
     function closeNav() {
@@ -139,11 +161,8 @@
 
     //Squad 1 videos
     var sqd1Videos = [
-        "NewAudio-Squad1/clip1.mp4",
-        "NewAudio-Squad1/clip2.mp4",
-        "NewAudio-Squad1/clip3.mp4",
-        "NewAudio-Squad1/clip4.mp4",
-        "NewAudio-Squad1/clip5.mp4"
+        "https://www.youtube.com/embed/P3p8JpfMuyE",
+
     ];
 
     $('#squad1').click(function () {
@@ -211,15 +230,59 @@
     function addVideos(videos) {
         var videoList = document.getElementById("video-list");
         videoList.innerHTML = '';
-        videos.forEach(function (url) {
-            var video = document.createElement("video");
-            video.src = url;
-            video.className = "video-iframe";
-            video.setAttribute("controls", "controls");
-            videoList.appendChild(video);
+        videos.forEach(function (url, index) {
+            var iframe = document.createElement("iframe");
+            iframe.src = url;
+            iframe.id = 'iframe' + (index + 1)
+            iframe.className = "video-iframe";
+            iframe.setAttribute('frameborder', '0');
+            iframe.setAttribute("allowfullscreen", "");     
+            
+            var button = document.createElement('button');
+            button.innerHTML = 'Center Video';
+            button.className = 'btn';
+            button.onclick = function() {
+                centerVideo('iframe' + (index + 1));
+            };
+            videoList.appendChild(iframe);
+            videoList.appendChild(button);
         });
     }
 
+    function centerVideo(containerId) {
+            var videoContainer = document.getElementById(containerId);
+            var iframe = videoContainer.querySelector('iframe');
+            var windowWidth = window.innerWidth;
+            var windowHeight = window.innerHeight;
+            var aspectRatio = 16 / 9; // YouTube video aspect ratio
+
+            // Calculate video width and height to fit the window
+            var videoWidth = windowWidth * 0.8; // 80% of window width
+            var videoHeight = videoWidth / aspectRatio;
+
+            // Set new video size and position
+            videoContainer.style.width = videoWidth + 'px';
+            videoContainer.style.height = videoHeight + 'px';
+            videoContainer.style.top = '50%';
+            videoContainer.style.left = '50%';
+            videoContainer.style.transform = 'translate(-50%, -50%)';
+        }
+
+        function stopAllVideos() {
+            // Get all video elements on the page
+            var videos = document.querySelectorAll('iframe, video');
+
+            // Loop through each video element and pause it
+            videos.forEach(function(video) {
+                if (video.tagName.toLowerCase() === 'iframe') {
+                    // For iframes (such as YouTube videos), set the src to an empty string to stop playback
+                    video.src = '';
+                } else {
+                    // For HTML5 video elements, use the pause() method to stop playback
+                    video.pause();
+                }
+            });
+        }
 
 
 </script>
