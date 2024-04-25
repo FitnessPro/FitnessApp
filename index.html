@@ -7,6 +7,14 @@
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 </head>
 <style>
+    .backgroundContainer {
+        z-index: 1;
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+        
+    }
+
     .sidebar {
         height: 100%;
         width: 0;
@@ -110,6 +118,7 @@
 </style>
 
 <body>
+    
     <div id="image-container" onclick="stopAllVideos(), closeNav()"><img src="AF NEW MAIN.png"></div>
 
     <div id="mySidebar" class="sidebar">
@@ -131,8 +140,8 @@
             <img id="squad6" src="402 SWEG Group & Squadron Shields/581.jpg">
         </div>
     </div>
-
-
+<div class="backgroundContainer" onclick="stopAllVideos(), closeNav()">
+</div>
 </body>
 
 
@@ -148,8 +157,8 @@
     }
 
     function closeVideo() {
-        if (document.pictureInPictureElement) {
-            document.exitPictureInPicture();
+        if (document.contains('iframe')) {
+            document.body.removeChild(videoContainer);;
         };
     }
 
@@ -166,19 +175,7 @@
 
     //Squad 2 videos
     var sqd2Videos = [
-        "NewAudio-Squad2/clip1.mp4",
-        "NewAudio-Squad2/clip2.mp4",
-        "NewAudio-Squad2/clip3.mp4",
-        "NewAudio-Squad2/clip4.mp4",
-        "NewAudio-Squad2/clip5.mp4",
-        "NewAudio-Squad2/clip6.mp4",
-        "NewAudio-Squad2/clip7.mp4",
-        "NewAudio-Squad2/clip8.mp4",
-        "NewAudio-Squad2/clip9.mp4",
-        "NewAudio-Squad2/clip10.mp4",
-        "NewAudio-Squad2/clip11.mp4",
-        "NewAudio-Squad2/clip12.mp4",
-        "NewAudio-Squad2/clip13.mp4"
+
     ];
 
     $('#squad2').click(function () {
@@ -198,9 +195,7 @@
 
     //Squad 4 videos
     var sqd4Videos = [
-        "NewAudio-Squad4/clip1.mp4",
-        "NewAudio-Squad4/clip2.mp4",
-        "NewAudio-Squad4/clip3.mp4"
+
     ];
 
     $('#squad4').click(function () {
@@ -210,9 +205,7 @@
 
     //Squad 5 videos
     var sqd5Videos = [
-        "NewAudio-Squad5/clip1.mp4",
-        "NewAudio-Squad5/clip2.mp4",
-        "NewAudio-Squad5/clip3.mp4",
+
     ];
 
     $('#squad5').click(function () {
@@ -252,16 +245,31 @@
             // Calculate video width and height to fit the window
             var videoWidth = windowWidth * 0.8; // 80% of window width
             var videoHeight = videoWidth / aspectRatio;
+            
+            var button = document.createElement('button');
+            button.innerHTML = 'Close Video';
+            button.className = 'btn';
+            button.onclick = function() {
+                document.body.removeChild(videoContainer);
+                document.body.removeChild(button);
+            };
 
             // Set new video size and position
             videoContainer.style.width = videoWidth + 'px';
             videoContainer.style.height = videoHeight + 'px';
+            videoContainer.style.position = 'absolute';
+            videoContainer.style.objectFit = 'contain';
             videoContainer.style.top = '50%';
             videoContainer.style.left = '50%';
             videoContainer.style.transform = 'translate(-50%, -50%)';
+            document.body.appendChild(videoContainer);
+            document.body.appendChild(button);
+            closeNav();     
+
         }
 
-        function stopAllVideos() {
+
+    function stopAllVideos() {
             // Get all video elements on the page
             var videos = document.querySelectorAll('iframe, video');
 
