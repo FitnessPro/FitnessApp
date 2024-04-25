@@ -144,8 +144,8 @@
 
 <script>
     function openNav() {
-        document.getElementById("mySidebar").style.width = "350px";
-        document.body.style.marginLeft = "350px";
+        document.getElementById("mySidebar").style.width = "315px";
+        document.body.style.marginLeft = "315px";
     }
 
     function closeNav() {
@@ -208,6 +208,16 @@
 
     $('#squad5').click(function () {
         addVideos(sqd5Videos);
+        openNav();
+    });
+
+    //Squad 6 videos
+    var sqd6Videos = [
+
+    ];
+
+    $('#squad6').click(function () {
+        addVideos(sqd6Videos);
         openNav();
     });
 
