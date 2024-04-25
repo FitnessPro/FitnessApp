@@ -244,13 +244,13 @@
             var videoWidth = windowWidth * 0.8; // 80% of window width
             var videoHeight = videoWidth / aspectRatio;
             
-            var button = document.createElement('button');
+/*             var button = document.createElement('button');
             button.innerHTML = 'Close Video';
             button.className = 'btn';
             button.onclick = function() {
                 document.body.removeChild(videoContainer);
                 document.body.removeChild(button);
-            };
+            }; */
 
             // Set new video size and position
             videoContainer.style.width = videoWidth + 'px';
@@ -261,7 +261,7 @@
             videoContainer.style.left = '50%';
             videoContainer.style.transform = 'translate(-50%, -50%)';
             document.body.appendChild(videoContainer);
-            document.body.appendChild(button);
+            //document.body.appendChild(button);
             closeNav();     
 
         }
