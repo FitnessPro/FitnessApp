@@ -26,16 +26,6 @@
         padding-top: 60px;
     }
 
-    @media screen and (max-height: 450px) {
-        .sidebar {
-            padding-top: 15px;
-        }
-
-        .sidebar a {
-            font-size: 18px;
-        }
-    }
-
     .show {
         display: block;
     }
@@ -88,18 +78,6 @@
         width: 10%;
     }
 
-    .video-container {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 70%;
-        height: 70%;
-        display: none;
-        z-index: 2;
-        transition: opacity 0.5s ease;
-    }
-
     .video-container iframe {
         position: absolute;
         top: 0;
@@ -143,6 +121,8 @@
 
 
 <script>
+
+    //Sidebar functions
     function openNav() {
         document.getElementById("mySidebar").style.width = "305px";
         document.body.style.marginLeft = "305px";
@@ -153,6 +133,7 @@
         document.body.style.marginLeft = "0";
     }
 
+    //Removing iFrame from document.body
     function closeVideo() {
         var iframeBody = document.getElementById("iframe1")
         if (document.body.contains(iframeBody)) {
@@ -221,6 +202,7 @@
         openNav();
     });
 
+    //JS to add VideoUrls to VideoList
     function addVideos(videos) {
         var videoList = document.getElementById("video-list");
         videoList.innerHTML = '';
@@ -243,6 +225,7 @@
         });
     }
 
+    //JS to center video to window
     function centerVideo(containerId) {
             var videoContainer = document.getElementById(containerId);
             var iframe = videoContainer.querySelector('iframe');
@@ -254,14 +237,6 @@
             var videoWidth = windowWidth * 0.8; // 80% of window width
             var videoHeight = videoWidth / aspectRatio;
             
-/*             var button = document.createElement('button');
-            button.innerHTML = 'Close Video';
-            button.className = 'btn';
-            button.onclick = function() {
-                document.body.removeChild(videoContainer);
-                document.body.removeChild(button);
-            }; */
-
             // Set new video size and position
             videoContainer.style.width = videoWidth + 'px';
             videoContainer.style.height = videoHeight + 'px';
@@ -271,12 +246,11 @@
             videoContainer.style.left = '50%';
             videoContainer.style.transform = 'translate(-50%, -50%)';
             document.body.appendChild(videoContainer);
-            //document.body.appendChild(button);
             closeNav();     
 
         }
 
-
+    //JS to Stop all videos from playing
     function stopAllVideos() {
             // Get all video elements on the page
             var videos = document.querySelectorAll('iframe, video');
