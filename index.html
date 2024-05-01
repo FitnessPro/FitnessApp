@@ -25,6 +25,19 @@
         transition: 0.5s;
         padding-top: 60px;
     }
+	
+     .video-divider {
+  	  height: 50px;
+ 	   border-top: 5px solid #ccc;
+  	  border-bottom: 5px solid #ccc;
+ 	   margin-bottom: 10px;
+ 	   display: flex;
+ 	   align-items: center;
+ 	   justify-content: center;
+	    color: white;
+	font-size: 20px; 
+	}
+
 
     .show {
         display: block;
@@ -38,40 +51,40 @@
         overflow: hidden;
     }
 
-    #squad1 {
+    #sweg {
         position: absolute;
         top: 50%;
         left: 20%;
         width: 10%;
     }
 
-    #squad2 {
+    #squad1 {
         position: absolute;
         top: 20%;
         left: 20%;
         width: 10%;
     }
 
-    #squad3 {
+    #squad2 {
         position: absolute;
         left: 30%;
         width: 10%;
     }
 
-    #squad4 {
+    #squad3 {
         position: absolute;
         right: 25%;
         width: 10%;
     }
 
-    #squad5 {
+    #squad4 {
         position: absolute;
         top: 20%;
         right: 15%;
         width: 10%;
     }
 
-    #squad6 {
+    #squad5 {
         position: absolute;
         top: 50%;
         right: 15%;
@@ -91,6 +104,19 @@
         z-index: 3;
         transition: opacity 0.5s ease;
     }
+
+.background {
+        position: fixed;
+top: 0;
+        left: 0;
+    z-index: -1;
+    width: 100vw; 
+    height: 100vh;
+    background-image: url('https://static.vecteezy.com/system/resources/previews/024/769/407/non_2x/view-of-the-planet-earth-during-sunrise-with-ai-generated-free-photo.jpg');
+    background-size: cover;
+    background-position: center; 
+}
+
 </style>
 
 <body>
@@ -98,7 +124,6 @@
     <div id="image-container" onclick="stopAllVideos(), closeNav()"><img src="AF NEW MAIN.png"></div>
 
     <div id="mySidebar" class="sidebar">
-        <h2>Videos</h2>
         <div id="video-list">
         
             <!-- Video iframes will be dynamically added here -->
@@ -108,16 +133,15 @@
 
     <div id="container">
         <div id="hotspot" class="hotspot">
-            <img id="squad1" src="402 SWEG Group & Squadron Shields/402 SWEG Shield.png">
-            <img id="squad2" src="402 SWEG Group & Squadron Shields/577.jpg">
-            <img id="squad3" src="402 SWEG Group & Squadron Shields/578.jpg">
-            <img id="squad4" src="402 SWEG Group & Squadron Shields/579.jpg">
-            <img id="squad5" src="402 SWEG Group & Squadron Shields/580.jpg">
-            <img id="squad6" src="402 SWEG Group & Squadron Shields/581.jpg">
+            <img id="sweg" src="402 sweg Group & Squadron Shields/402 sweg Shield.png">
+            <img id="squad1" src="402 sweg Group & Squadron Shields/577.png">
+            <img id="squad2" src="402 sweg Group & Squadron Shields/578.png">
+            <img id="squad3" src="402 sweg Group & Squadron Shields/579.png">
+            <img id="squad4" src="402 sweg Group & Squadron Shields/580.png">
+            <img id="squad5" src="402 sweg Group & Squadron Shields/581.png">
         </div>
     </div>
-<div img src="https://static.vecteezy.com/system/resources/previews/024/769/407/non_2x/view-of-the-planet-earth-during-sunrise-with-ai-generated-free-photo.jpg
-" class="backgroundContainer" onclick="stopAllVideos(), closeNav(), closeVideo()"></div>
+<div class="background" onclick="stopAllVideos(), closeNav(), closeVideo()"></div>
 </body>
 
 
@@ -142,10 +166,20 @@
         };
     }
 
-    //Squad 1 videos
-    var sqd1Videos = [
+    //sweg videos
+    var swegVideos = [ 
         "https://www.youtube.com/embed/lJeita8Dyco?si=fwjnD1XMXyWBVdb8",
 
+    ];
+
+    $('#sweg').click(function () {
+        addVideos(swegVideos);
+        openNav();
+    });
+
+    //Squad 1 videos
+    var sqd1Videos = [
+	'a', 'b','c',
     ];
 
     $('#squad1').click(function () {
@@ -154,8 +188,10 @@
     });
 
     //Squad 2 videos
-    var sqd2Videos = [
+    var sqd2Videos = [	'a', 'b',
 
+        "https://www.youtube.com/embed/SRe66M24ls8?si=85g_49pyma-A5N-R",
+'c',
     ];
 
     $('#squad2').click(function () {
@@ -165,7 +201,8 @@
 
     //Squad 3 videos
     var sqd3Videos = [
-        "https://www.youtube.com/embed/SRe66M24ls8?si=85g_49pyma-A5N-R",
+	'a', 'b','c',
+
     ];
 
     $('#squad3').click(function () {
@@ -175,6 +212,7 @@
 
     //Squad 4 videos
     var sqd4Videos = [
+	'a', 'b','c',
 
     ];
 
@@ -185,21 +223,11 @@
 
     //Squad 5 videos
     var sqd5Videos = [
-
+	'a', 'b','c',
     ];
 
     $('#squad5').click(function () {
         addVideos(sqd5Videos);
-        openNav();
-    });
-
-    //Squad 6 videos
-    var sqd6Videos = [
-
-    ];
-
-    $('#squad6').click(function () {
-        addVideos(sqd6Videos);
         openNav();
     });
 
@@ -208,21 +236,33 @@
         var videoList = document.getElementById("video-list");
         videoList.innerHTML = '';
         videos.forEach(function (url, index) {
-            var iframe = document.createElement("iframe");
-            iframe.src = url;
-            iframe.id = 'iframe' + (index + 1)
-            iframe.className = "video-iframe";
-            iframe.setAttribute('frameborder', '0');
-            iframe.setAttribute("allowfullscreen", "");     
+            if (url === 'a' || url === 'b' || url === 'c') {
+            currentFlight = url.toUpperCase();             // Sets flight
+            var divider = document.createElement('div');             // Adds a divider element with flight label
+            divider.className = 'video-divider';
+            divider.textContent = 'Flight ' + currentFlight;
+            videoList.appendChild(divider);
+		
+
+
+                
+            }else{
+                var iframe = document.createElement("iframe");
+                iframe.src = url;
+                iframe.id = 'iframe' + (index + 1)
+                iframe.className = "video-iframe";
+                iframe.setAttribute('frameborder', '0');
+                iframe.setAttribute("allowfullscreen", "");     
             
-            var button = document.createElement('button');
-            button.innerHTML = 'Center Video';
-            button.className = 'btn';
-            button.onclick = function() {
-                centerVideo('iframe' + (index + 1));
-            };
-            videoList.appendChild(iframe);
-            videoList.appendChild(button);
+                var button = document.createElement('button');
+                button.innerHTML = 'Center Video';
+                button.className = 'btn';
+                button.onclick = function() {
+                    centerVideo('iframe' + (index + 1));
+                };
+                videoList.appendChild(iframe);
+                videoList.appendChild(button);
+            }
         });
     }
 
